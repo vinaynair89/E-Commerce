@@ -1,0 +1,155 @@
+<html ng-app="detailApp">
+	<link rel='stylesheet', href='/css/simple-sidebar.css'>
+	<link rel='stylesheet', href='/css/styles.css'>
+	<link rel='stylesheet', href='/css/bootstrap.min.css'>
+
+
+
+	<body onload="chk()" background="/images/background-pattern-007.jpg">
+		<head>
+			<div id="wrapper">
+				<div id="sidebar-wrapper" role="navigation" ng-controller="detailsController">
+			       <ul class="sidebar-nav" >
+			       	  <font color=white>
+			       	  	<center><b>CATALOG</b></center></br>
+			       	  	<li class="sidebar-brand" ng-repeat="detail in details">
+			              <a href="/{{detail._id}}"> {{detail._id}} </a><br>
+
+			          	</li>
+			          	<li>
+			          		<a href="/home">home</a>
+			          	</li>
+			          </font>
+			       </ul>
+
+
+				</div>
+			<div id="page-content-wrapper">
+				<div class="container-fluid" ng-controller="detailsController">
+			   
+			       	<div class="row">
+			       		<div class="col-lg-12">
+			       		
+			       	 	<div class="sidebar-brand" ng-repeat="home in home">
+			       	 	  <center>
+			              <img src="/images/{{home.url_name}}" heigth=500 width=500></img><br>
+			              
+			              <p id="status"></p>
+			              <p id="st"></p>
+			              
+			              <input type="hidden" name="hendvalue" id="hendvalue" value="{{home.end_date}}"></input>
+			       	 	  <input type="hidden" name="hstartvalue" id="hstartvalue" value="{{home.start_date}}"></input>
+			       	 	  <div ng-if="chk()">
+			              <a href="http://localhost:8080/ordermgmtapp/summary/{{home.name}}"><input type="submit" id="myBtn" value="buy"></a>
+			              </div>
+			              <div ng-if="!chk()">
+			              	<b><font color=red>Product not available</font></b>
+			              </div>
+			              <p id="st2"></p>
+			              </center>
+			              <p id="demo"></p>
+			               <!--{{home.name}}
+			               {{home.type}}-->
+			              <p id="sess"></p>
+			          	</div>
+			          	
+			          			
+			          </div>
+			         </div>
+			           
+
+
+				</div>
+				
+			           
+
+
+				</div>
+			</div>
+			</div>
+
+			<script>
+
+
+				var v="/"+location.pathname;
+				 var v=location.pathname.substring(location.pathname.indexOf("/") + 1,location.pathname.lastIndexOf("/"));
+				// v = url.substring(url.indexOf("://")+3);
+				 document.getElementById("demo").innerHTML = v;
+				 var det="";
+
+				 if(v=="car")
+				 {
+				 	det="<i><font size=5><b>Name:{{home.name}}<br>Model:{{home.model}}<br>Year of Manufacture:{{home.year}}<br>Mileage:{{home.mileage}}<br>Condition:{{home.condition}}<br>Description:{{home.description}}<br>Url:{{home.url_name}}<br>Price:{{home.Price}}$</b></font></i>";
+				 	document.getElementById("demo").innerHTML =det;
+				 	var date="{{home.date}}"
+				 }
+				 else if(v=="nailpolish")
+				 {
+				 	det="<i><font size=5><b>Name:{{home.name}}<br>Description:{{home.description}}<br>Price:{{home.Price}}$<br>URL:{{home.url_name}}<br>Polish Type:{{home.polish_type}}<br>Finishes:{{home.finishes}}<br></b></font></i>";
+				 	document.getElementById("demo").innerHTML =det;
+				 }
+				 else if(v=="television")
+				 {
+				 	det="<i><font size=5><b>Brand:{{home.brand}}<br>Diagonal Length:{{home.diag_length}}<br>HD or not:{{home.hd}}<br>Length:{{home.Length}}<br>Width:{{home.Width}}<br>Height:{{home.Height}}<br>Price:{{home.Price}}$<br>Description:{{home.description}}<br>Warranty:{{home.warranty}}</b></font></i>";
+				 	document.getElementById("demo").innerHTML =det;
+				 }
+
+				 /*function chk(){
+					//console.log("test");
+					var d = new Date();
+					var start_dt=document.getElementById("hstartvalue").value;
+					console.log(start_dt);
+					//var start=start_dt.toISOString();
+					//var st=start_dt.getDate();
+					//var newd=Date.parse(start_dt);
+					var currd=d.toISOString();
+					var end_dt=document.getElementById("hendvalue").value;
+					var err="Not in stock";
+					//var end=end_dt.toISOString();
+					//console.log(start_dt+" "+end+" "+currd);
+					//var end=new Date(end_dt);
+					debugger;
+					if(currd<end_dt)
+					{
+						//document.getElementById("myBtn").innerHTML = "sadasdasd";
+     			//document.getElementById("status").innerHTML = end_dt ;
+     			//var s;    			//document.getElementById("curr").innerHTML=end_dt;
+     			//document.getElementById("st").innerHTML=start;
+     			return true;
+     				}
+     				else
+     				{
+     			//document.getElementById("myBtn").disabled = false;
+     			//document.getElementById("curr").innerHTML=currd;
+     			//document.getElementById("st").innerHTML=start_dt;
+     			return false;
+     			//document.getElementById("st2").innerHTML=(currd<=end);
+     				}
+     			}*/
+				
+				 
+
+			</script>
+			<script>
+			//<%Session["Test"] = "{{detail._id}}";%>
+
+					
+			</script>
+		</head>
+
+			
+			
+		
+
+			
+			
+		
+	</body>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/app.js"></script>
+      <script type="text/javascript" src="/js/controllers/details-controller.js"></script>
+</html>
+		
+
